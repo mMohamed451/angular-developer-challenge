@@ -6,7 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MatIconModule } from '@angular/material/icon';
-import { DataTableComponent } from './components/data-table/data-table.component';
+import { MovieListComponent } from './components/data-table/movie-list.component';
 @NgModule({
 
   imports: [
@@ -18,7 +18,7 @@ import { DataTableComponent } from './components/data-table/data-table.component
     MatIconModule
   ],
   declarations: [
-    DataTableComponent,
+    MovieListComponent,
     AppComponent,
   ],
   providers: [],

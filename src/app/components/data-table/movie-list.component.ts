@@ -1,17 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-import { MoviesService } from 'src/app/core/services/person.service';
+import { MoviesService } from 'src/app/core/services/movie.service';
 
 @Component({
-  selector: 'app-data-table',
-  templateUrl: './data-table.component.html',
-  styleUrls: ['./data-table.component.scss'],
+  selector: 'app-movie-list',
+  templateUrl: './movie-list.component.html',
+  styleUrls: ['./movie-list.component.scss'],
 })
-export class DataTableComponent implements OnInit {
+export class MovieListComponent implements OnInit {
   listOfMovies: any = [];
   listOfFavoriteMovies: any = [];
   constructor(private moviesService: MoviesService) {}
 
   ngOnInit(): void {
+    // get favorite movies from localStorage
     this.moviesService.getAll().subscribe((data: any) => {
       console.log(data.items);
       this.listOfMovies = data.items;
@@ -41,6 +42,7 @@ export class DataTableComponent implements OnInit {
     this.listOfFavoriteMovies.push(movie);
     console.log(this.listOfFavoriteMovies);
     console.log('element added')
+    // Set favorite movie in localStorage.
   }
 
   removeMovieFromFavoriteList(movieId: any): void {
@@ -53,5 +55,7 @@ export class DataTableComponent implements OnInit {
     this.listOfFavoriteMovies.splice(movieIndex, 1);
     console.log('element removed')
     console.log(this.listOfFavoriteMovies);
+    // Set favorite movie in localStorage.
   }
+
 }
