@@ -1,11 +1,16 @@
+<div class="flex-row flex-justify-center">
+  <span class="title1"> Movies list</span>
+</div>
 <div style="display: flex; flex-wrap: wrap;position: relative;">
-  <div *ngFor="let movie of listOfMovies" style="display: flex;position: relative; padding: 20px;flex-direction: column;align-content: center;justify-content: center;align-items: center;
+  <div *ngFor="let movie of listOfMovies" [routerLink]="['/movie-details', movie.id]" style="display: flex;position: relative; padding: 20px;flex-direction: column;align-content: center;justify-content: center;align-items: center;
   ">
-    <div style="color: red; position: absolute;top:8%;right:10%; cursor: pointer;" (click)="toggleClass($event,movie)">
-      <mat-icon>home</mat-icon>
-    </div>
 
-    <img [src]="'https://image.tmdb.org/t/p/w200/'+movie.poster_path">
-    <h2 style="margin:auto;">{{movie.title| slice:0:18}}</h2>
+      <div style="color: red; position: absolute;top:8%;right:10%; cursor: pointer;"
+        (click)="toggleClass($event,movie)">
+        <mat-icon>home</mat-icon>
+      </div>
+      <img [src]="'https://image.tmdb.org/t/p/w200/'+movie.poster_path">
+      <h2 style="margin:auto;">{{movie.title| slice:0:18}}</h2>
+
   </div>
 </div>

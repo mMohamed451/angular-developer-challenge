@@ -1,0 +1,21 @@
+<div style="display: flex; flex-wrap: wrap; position: relative" *ngIf="movie">
+  <div style="
+      display: flex;
+      position: relative;
+      padding: 20px;
+      align-content: center;
+      justify-content: center;
+      align-items: center;
+    ">
+
+    <div >
+
+      <img [src]="'https://image.tmdb.org/t/p/w300/' + movie.poster_path" />
+      <h2 style="margin: auto">Title: {{ movie.original_title }}</h2>
+      <h5>Description: {{movie.overview}}</h5>
+      <h5>Release date: {{movie.release_date}}</h5>
+      <h5>Votes average: {{movie.vote_average}}</h5>
+      <h5>Popularity: {{movie.popularity}}</h5>
+    </div>
+  </div>
+</div>

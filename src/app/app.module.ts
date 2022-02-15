@@ -7,6 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MovieListComponent } from './components/movie-list/movie-list.component';
+import { MovieDetailsComponent } from './components/movie-details/movie-details.component';
 @NgModule({
 
   imports: [
@@ -20,9 +21,8 @@ import { MovieListComponent } from './components/movie-list/movie-list.component
   declarations: [
     MovieListComponent,
     AppComponent,
+    MovieDetailsComponent,
   ],
-  providers: [],
-  entryComponents: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

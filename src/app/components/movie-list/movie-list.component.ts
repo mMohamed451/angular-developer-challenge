@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { MoviesService } from 'src/app/core/services/movie.service';
 
 @Component({
@@ -9,17 +10,14 @@ import { MoviesService } from 'src/app/core/services/movie.service';
 export class MovieListComponent implements OnInit {
   listOfMovies: any = [];
   listOfFavoriteMovies: any = [];
-  constructor(private moviesService: MoviesService) {}
+  constructor(private moviesService: MoviesService, private router: Router) {}
 
   ngOnInit(): void {
     // get favorite movies from localStorage
-    this.moviesService.getAll().subscribe((data: any) => {
-      console.log(data.items);
-      this.listOfMovies = data.items;
-    });
+    this.getAllMovies();
   }
 
-  toggleClass(event:any, movie:any) {
+  toggleClass(event: any, movie: any) {
     event.target.classList.toggle('favorite-class');
     if (this.searchForItemInsideArr(movie.id)) {
       this.removeMovieFromFavoriteList(movie);
@@ -29,10 +27,10 @@ export class MovieListComponent implements OnInit {
   }
 
   searchForItemInsideArr(movieId: any) {
-    return this.listOfFavoriteMovies.some((item:any)=>{
-      if(item.id=== movieId){
+    return this.listOfFavoriteMovies.some((item: any) => {
+      if (item.id === movieId) {
         return true;
-      }else{
+      } else {
         return false;
       }
     });
@@ -40,22 +38,50 @@ export class MovieListComponent implements OnInit {
 
   addMovieToFavoriteList(movie: any): void {
     this.listOfFavoriteMovies.push(movie);
-    console.log(this.listOfFavoriteMovies);
-    console.log('element added')
     // Set favorite movie in localStorage.
   }
 
   removeMovieFromFavoriteList(movieId: any): void {
     let movieIndex = this.listOfFavoriteMovies
-    .map((x:any) => {
-      return x.Id;
-    })
-    .indexOf(movieId);
+      .map((x: any) => {
+        return x.Id;
+      })
+      .indexOf(movieId);
 
     this.listOfFavoriteMovies.splice(movieIndex, 1);
-    console.log('element removed')
-    console.log(this.listOfFavoriteMovies);
     // Set favorite movie in localStorage.
   }
 
+  getAllMovies(): void {
+    this.moviesService.getAllMovies().subscribe({
+      next: (data: any) => {
+        this.listOfMovies = data.results;
+      },
+      error: (error: any) => {
+        console.log(error);
+      },
+    });
+  }
+
+  searchForSpecificMovie(): void {
+    this.moviesService.searchForSpecificMovie().subscribe({
+      next: (data: any) => {
+        this.listOfMovies = data.results;
+      },
+      error: (error: any) => {
+        console.log(error);
+      },
+    });
+  }
+
+  getMovieDetails(movieId: any): void {
+    this.moviesService.getMovieDetails(movieId).subscribe({
+      next: (data: any) => {
+        this.router.navigate([`movie-details/${movieId}`]);
+      },
+      error: (error: any) => {
+        console.log(error);
+      },
+    });
+  }
 }
