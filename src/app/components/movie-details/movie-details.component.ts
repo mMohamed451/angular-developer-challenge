@@ -9,6 +9,7 @@ import { MoviesService } from 'src/app/core/services/movie.service';
 })
 export class MovieDetailsComponent implements OnInit {
   movie: any;
+  reviews: any;
   constructor(
     private activatedRoute: ActivatedRoute,
     private movieService: MoviesService,
@@ -20,6 +21,12 @@ export class MovieDetailsComponent implements OnInit {
       this.movieService.getMovieDetails(queryParams['id']).subscribe({
         next: (data: any) => {
           this.movie = data;
+          this.movieService.getMovieReviews(queryParams['id']).subscribe(
+            {
+              next: (reviews:any)=> this.reviews = reviews.results,
+              error: (err: any) => console.log(err)
+            }
+          )
         },
         error: (error: any) => {
           this.router.navigate(['']);

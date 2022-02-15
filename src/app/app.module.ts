@@ -7,7 +7,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MovieListComponent } from './components/movie-list/movie-list.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MovieDetailsComponent } from './components/movie-details/movie-details.component';
+import { StarRatingComponent } from './star-rating/star-rating.component';
 @NgModule({
 
   imports: [
@@ -16,12 +18,14 @@ import { MovieDetailsComponent } from './components/movie-details/movie-details.
     HttpClientModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    MatIconModule
+    MatIconModule,
+    MatSnackBarModule,
   ],
   declarations: [
     MovieListComponent,
     AppComponent,
     MovieDetailsComponent,
+    StarRatingComponent,
   ],
   bootstrap: [AppComponent]
 })

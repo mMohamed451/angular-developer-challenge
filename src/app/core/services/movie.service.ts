@@ -25,5 +25,9 @@ export class MoviesService {
     return this.httpClient.get(`${environment.url}/movie/${movieId}?api_key=${environment.apiKey}`);
   }
 
+  getMovieReviews(movieId: any) {
+    return this.httpClient.get(`${environment.url}/movie/${movieId}/reviews?api_key=${environment.apiKey}`);
+  }
+
 
 }
