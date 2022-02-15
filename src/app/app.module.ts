@@ -6,7 +6,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { MatIconModule } from '@angular/material/icon';
-import { MovieListComponent } from './components/data-table/movie-list.component';
+import { MovieListComponent } from './components/movie-list/movie-list.component';
 @NgModule({
 
   imports: [
