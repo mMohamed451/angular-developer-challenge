@@ -1,0 +1,20 @@
+.details-container {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  .card {
+    display: flex;
+    position: relative;
+    padding: 20px;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+  }
+  .title{
+    margin: auto
+  }
+  .add-to-favorite{
+    color: red;
+    cursor: pointer;
+  }
+}

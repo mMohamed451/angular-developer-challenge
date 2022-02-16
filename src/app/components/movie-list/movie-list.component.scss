@@ -1,3 +1,30 @@
-.favorite-class{
-  color: blue;
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+
+  .movies-title {
+    width: 100%;
+  }
+  .list {
+    display: flex;
+    position: relative;
+    padding: 20px;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    .favorite {
+      color: red;
+      position: absolute;
+      top: 8%;
+      left: 10%;
+      cursor: pointer;
+    }
+  }
+  .title {
+    color: blue;
+    margin: auto;
+    cursor: pointer;
+  }
 }

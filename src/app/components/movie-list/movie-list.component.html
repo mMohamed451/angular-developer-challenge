@@ -4,32 +4,28 @@
   </mat-form-field>
 </div>
 
-<div style="display: flex; flex-wrap: wrap;position: relative;" *ngIf="listOfFavoriteMovies &&listOfFavoriteMovies.length >0">
-  <h1 style="width: 100%;">Favorite Movies</h1>
+<div class="container" *ngIf="listOfFavoriteMovies &&listOfFavoriteMovies.length >0">
+  <h1 class="movies-title" >Favorite Movies</h1>
   <br>
-  <div *ngFor="let movie of listOfFavoriteMovies" style="display: flex;position: relative; padding: 20px;flex-direction: column;align-content: center;justify-content: center;align-items: center;
-  ">
-    <div style="color: red; position: absolute;top:8%;left:10%; cursor: pointer;" (click)="addToFavoriteList($event,movie)">
-      <mat-icon>home</mat-icon>
-    </div>
+  <div class="list" *ngFor="let movie of listOfFavoriteMovies| movieFilter: inputFilter">
     <div [routerLink]="['/movie-details', movie.id]">
       <img [src]="'https://image.tmdb.org/t/p/w200/'+movie.poster_path">
-      <h2 style="margin:auto;cursor: pointer; color: blue;">{{movie.title| slice:0:18}}</h2>
+      <h2 class="title">{{movie.title| slice:0:18}}</h2>
     </div>
   </div>
 </div>
 
-<div style="display: flex; flex-wrap: wrap;position: relative;">
-  <h1 style="width: 100%;">MoviesList</h1>
+<div class="container" *ngIf="listOfFavoriteMovies &&listOfFavoriteMovies.length >0">
+  <h1 class="movies-title" >Favorite Movies</h1>
   <br>
-  <div *ngFor="let movie of listOfMovies | movieFilter: inputFilter" style="display: flex;position: relative; padding: 20px;flex-direction: column;align-content: center;justify-content: center;align-items: center;
-  ">
-    <div style="color: red; position: absolute;top:8%;left:10%; cursor: pointer;" (click)="addToFavoriteList($event,movie)">
+  <div class="list" *ngFor="let movie of listOfMovies | movieFilter: inputFilter">
+    <div class="favorite" (click)="addToFavoriteList($event,movie)">
       <mat-icon>home</mat-icon>
     </div>
     <div [routerLink]="['/movie-details', movie.id]">
       <img [src]="'https://image.tmdb.org/t/p/w200/'+movie.poster_path">
-      <h2 style="margin:auto;cursor: pointer; color: blue;">{{movie.title| slice:0:18}}</h2>
+      <h2 class="title">{{movie.title| slice:0:18}}</h2>
     </div>
   </div>
 </div>
+

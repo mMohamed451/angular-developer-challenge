@@ -1,23 +1,19 @@
-<div style="display: flex; flex-wrap: wrap; position: relative" *ngIf="movie">
-  <div style="
-      display: flex;
-      position: relative;
-      padding: 20px;
-      align-content: center;
-      justify-content: center;
-      align-items: center;
-    ">
+<div class="details-container" *ngIf="movie">
+  <div class="card">
 
     <div>
 
       <img [src]="'https://image.tmdb.org/t/p/w300/' + movie.poster_path" />
-      <h2 style="margin: auto">Title: {{ movie.original_title }}</h2> <span style="color: red; cursor: pointer;" (click)="addMovieToFavoriteList(movie)">Add To Favorite</span>
+      <h2 class="title">Title: {{ movie.original_title }}</h2>
+        <span class="add-to-favorite" (click)="addMovieToFavoriteList(movie)">
+         Add To Favorite
+        </span>
 
       <h5>Description: {{movie.overview}}</h5>
       <h5>Release date: {{movie.release_date}}</h5>
-      <!-- <h5>Votes average: {{movie.vote_average}}</h5> -->
       <h5>Votes average:
-        <app-star-rating [rating]="movie.vote_average" [starCount]="10" [color]="'red'"></app-star-rating>
+        <app-star-rating [rating]="movie.vote_average" [starCount]="10" [color]="'red'">
+        </app-star-rating>
       </h5>
       <h5>Popularity: {{movie.popularity}}</h5>
     </div>
