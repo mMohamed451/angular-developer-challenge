@@ -10,6 +10,9 @@ import { MovieListComponent } from './components/movie-list/movie-list.component
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MovieDetailsComponent } from './components/movie-details/movie-details.component';
 import { StarRatingComponent } from './star-rating/star-rating.component';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
+import { MatInputModule } from '@angular/material/input';
+import { MovieFilterPipe } from './core/pipes/movie-filter.pipe';
 @NgModule({
 
   imports: [
@@ -20,12 +23,16 @@ import { StarRatingComponent } from './star-rating/star-rating.component';
     AppRoutingModule,
     MatIconModule,
     MatSnackBarModule,
+    MatAutocompleteModule,
+    MatInputModule,
+
   ],
   declarations: [
     MovieListComponent,
     AppComponent,
     MovieDetailsComponent,
     StarRatingComponent,
+    MovieFilterPipe
   ],
   bootstrap: [AppComponent]
 })

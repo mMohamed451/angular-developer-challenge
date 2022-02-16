@@ -10,11 +10,18 @@ import { MoviesService } from 'src/app/core/services/movie.service';
 export class MovieListComponent implements OnInit {
   listOfMovies: any = [];
   listOfFavoriteMovies: any = [];
+  inputFilter: any;
   constructor(private moviesService: MoviesService, private router: Router) {}
 
   ngOnInit(): void {
     // get favorite movies from localStorage
     this.getAllMovies();
+  }
+
+
+  doFilter(event: any): void {
+    this.inputFilter = event.target.value;
+    this.listOfMovies.filter = event.target.value.trim().toLocaleLowerCase();
   }
 
   toggleClass(event: any, movie: any) {
