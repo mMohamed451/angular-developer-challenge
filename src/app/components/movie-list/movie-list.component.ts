@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LocalStorageHelperMethodsService } from 'src/app/core/services/local-storage-helper-methods.service';
 import { MoviesService } from 'src/app/core/services/movie.service';
 
 @Component({
@@ -11,25 +12,28 @@ export class MovieListComponent implements OnInit {
   listOfMovies: any = [];
   listOfFavoriteMovies: any = [];
   inputFilter: any;
-  constructor(private moviesService: MoviesService, private router: Router) {}
+  favoriteMovies: any;
+  constructor(private moviesService: MoviesService, private router: Router, private localStorageService: LocalStorageHelperMethodsService) {}
 
   ngOnInit(): void {
-    // get favorite movies from localStorage
     this.getAllMovies();
+    this.listOfFavoriteMovies = this.localStorageService.getFavoriteMovieList();
   }
-
 
   doFilter(event: any): void {
     this.inputFilter = event.target.value;
     this.listOfMovies.filter = event.target.value.trim().toLocaleLowerCase();
   }
 
-  toggleClass(event: any, movie: any) {
-    event.target.classList.toggle('favorite-class');
-    if (this.searchForItemInsideArr(movie.id)) {
-      this.removeMovieFromFavoriteList(movie);
+  addToFavoriteList(event: any, movie: any) {
+    if (event.target.classList.value.search('favorite-class') === -1) {
+      // add to localstorage
+      this.listOfFavoriteMovies = this.localStorageService.setFavoriteMovieList(movie);
+      event.target.classList.add('favorite-class');
     } else {
-      this.addMovieToFavoriteList(movie);
+      // remove from localstorage
+      this.listOfFavoriteMovies = this.localStorageService.removeMovieFromFavoriteMovieList(movie.id);
+      event.target.classList.remove('favorite-class');
     }
   }
 
@@ -45,7 +49,7 @@ export class MovieListComponent implements OnInit {
 
   addMovieToFavoriteList(movie: any): void {
     this.listOfFavoriteMovies.push(movie);
-    // Set favorite movie in localStorage.
+    this.localStorageService.setFavoriteMovieList(movie);
   }
 
   removeMovieFromFavoriteList(movieId: any): void {
@@ -56,7 +60,8 @@ export class MovieListComponent implements OnInit {
       .indexOf(movieId);
 
     this.listOfFavoriteMovies.splice(movieIndex, 1);
-    // Set favorite movie in localStorage.
+    this.listOfFavoriteMovies = this.localStorageService.removeMovieFromFavoriteMovieList(movieId);
+
   }
 
   getAllMovies(): void {

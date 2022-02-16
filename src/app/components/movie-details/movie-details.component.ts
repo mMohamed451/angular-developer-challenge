@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
+import { LocalStorageHelperMethodsService } from 'src/app/core/services/local-storage-helper-methods.service';
 import { MoviesService } from 'src/app/core/services/movie.service';
 
 @Component({
@@ -13,7 +14,8 @@ export class MovieDetailsComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private movieService: MoviesService,
-    private router: Router
+    private router: Router,
+    private localStorageService: LocalStorageHelperMethodsService
   ) {}
 
   ngOnInit(): void {
@@ -33,5 +35,16 @@ export class MovieDetailsComponent implements OnInit {
         },
       });
     });
+
+
+  }
+
+  addMovieToFavoriteList(movie: any): void {
+    this.localStorageService.setFavoriteMovieList(movie);
+  }
+
+  removeMovieFromFavoriteList(movieId: any): void {
+    this.localStorageService.removeMovieFromFavoriteMovieList(movieId);
+
   }
 }
